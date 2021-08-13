@@ -16,7 +16,7 @@ public class ContactsApp extends Contacts{
 
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         boolean running = true;
 
@@ -24,7 +24,7 @@ public class ContactsApp extends Contacts{
             returnMenuDisplay();
 
             int response = promptUserForChoice();
-//            running = executeUserChoice(response);
+            running = executeUserChoice(response);
 
         }
 
