@@ -12,16 +12,16 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContactsApp {
+public class ContactsApp extends Contacts{
 
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         boolean running = true;
 
         while (running){
-            System.out.println(returnMenuDisplay());
+            returnMenuDisplay();
 
             int response = promptUserForChoice();
 //            running = executeUserChoice(response);
@@ -31,4 +31,5 @@ public class ContactsApp {
 
 
     }
+
 }

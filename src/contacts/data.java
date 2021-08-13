@@ -1,5 +1,6 @@
 package contacts;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -9,7 +10,7 @@ import java.util.List;
 
 public class data {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         String directory = "src/contacts";
         String filename = "contacts.txt";
@@ -33,8 +34,6 @@ public class data {
         for (String line : usersContactList) {
             System.out.println(line);
         }
-    }
-
     }
 
 }

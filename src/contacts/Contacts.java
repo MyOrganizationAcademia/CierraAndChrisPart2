@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Contacts {
 
-    private static void returnMenuDisplay() {
+    public static void returnMenuDisplay() {
         String choices = "What would you like to do?\n" +
                 "\n" +
                 "1 - View all contacts\n" +
@@ -21,48 +21,49 @@ public class Contacts {
         System.out.println(choices);
     }
 
-    private static int promptUserForChoice(){
+    public static int promptUserForChoice(){
         Input input = new Input();
         int response = input.getInt(1,5);
+        System.out.println(response);
         return response;
     }
 
-    private static boolean executeUserChoice(int choice){
-        boolean continueRunningApp = true;
-
-        switch(choice){
-            case 1:
-                System.out.println("\n");
-                Path dataFile = Paths.get(directory, filename);
-                List<String> usersContactList = Files.readAllLines(dataFile);
-                for (String line : usersContactList) {
-                    System.out.println(line);
-                }
-                break;
-            case 2:
-                System.out.println("\n");
-                viewMusiciansByGenre("jazz");
-                System.out.println("\n");
-                break;
-            case 3:
-                System.out.println("\n");
-                viewMusiciansByGenre("blues");
-                System.out.println("\n");
-                break;
-            case 4:
-                System.out.println("\n");
-                viewMusiciansByGenre("rock");
-                System.out.println("\n");
-                break;
-            case 5:
-                System.out.println("Good bye");
-                continueRunningApp = false;
-                break;
-
-        }
-
-        return continueRunningApp;
-
-    }
+//    private static boolean executeUserChoice(int choice){
+//        boolean continueRunningApp = true;
+//
+//        switch(choice){
+//            case 1:
+//                System.out.println("\n");
+//                Path dataFile = Paths.get(directory, filename);
+//                List<String> usersContactList = Files.readAllLines(dataFile);
+//                for (String line : usersContactList) {
+//                    System.out.println(line);
+//                }
+//                break;
+//            case 2:
+//                System.out.println("\n");
+//                viewMusiciansByGenre("jazz");
+//                System.out.println("\n");
+//                break;
+//            case 3:
+//                System.out.println("\n");
+//                viewMusiciansByGenre("blues");
+//                System.out.println("\n");
+//                break;
+//            case 4:
+//                System.out.println("\n");
+//                viewMusiciansByGenre("rock");
+//                System.out.println("\n");
+//                break;
+//            case 5:
+//                System.out.println("Good bye");
+//                continueRunningApp = false;
+//                break;
+//
+//        }
+//
+//        return continueRunningApp;
+//
+//    }
 
 }
