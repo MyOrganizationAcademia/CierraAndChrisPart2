@@ -45,11 +45,10 @@ public class Contacts {
 
     private static void addNewContact(Path dataFile) throws IOException {
         List<String> contact = new ArrayList<>();
-        Input addName = new Input();
-        Input addNumber = new Input();
-        System.out.println("Name | Phone number");
-        System.out.println("--------------");
-        contact.add(addName.getString() + " | " + addNumber.getString()); // Used getString method from input.java
+        Input inputName = new Input();
+        Input inputNumber = new Input();
+
+        contact.add(inputName.getString() + " | " + inputNumber.getString()); // Used getString method from input.java
         Files.write(dataFile, contact, StandardOpenOption.APPEND);
     }
 
