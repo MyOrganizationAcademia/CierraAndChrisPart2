@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Contacts {
+    String directory = "src/contacts";
+    String filename = "contacts.txt";
 
     public static void returnMenuDisplay() {
         String choices = "What would you like to do?\n" +
@@ -31,23 +33,24 @@ public class Contacts {
         return response;
     }
 
-    private static void viewByContactName(Input name){
-        Input searchName = new Input();
-        boolean ans = contact.contains(searchName);
-        if(ans){
-            System.out.println("List contains");
-        } else {
-            System.out.println("no");
+    private static void viewByContactName(Path dataFile) throws IOException {
+        Input input = new Input();
+        List<String> usersContactList = Files.readAllLines(dataFile);
+        String contactToView = input.getString();
+
+        for (String contact : usersContactList) {
+            boolean ans = contact.contains(contactToView);
+            if(ans){
+                System.out.println(contact);
+            }
         }
 
     }
 
 
-    public static boolean executeUserChoice(int choice) throws IOException {
+    public static boolean executeUserChoice(int choice, String directory, String filename) throws IOException {
         boolean continueRunningApp = true;
-        String directory = "src/contacts";
-        String filename = "contacts.txt";
-        ArrayList<String> contact = new ArrayList<String>();
+        List<String> contact = new ArrayList<>();
         Path dataFile = Paths.get(directory, filename);
 
 
@@ -68,8 +71,7 @@ public class Contacts {
                 break;
             case 3:
                 System.out.println("\nEnter a name you want to search: ");
-                Input searchName = new Input();
-                viewByContactName(searchName);
+                viewByContactName(dataFile);
 //                contact.contains(searchName.getString() + " | " + searchName.getString());
                 break;
 //            case 4:

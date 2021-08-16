@@ -17,6 +17,8 @@ public class ContactsApp extends Contacts{
 
 
     public static void main(String[] args) throws IOException {
+        String directory = "src/contacts";
+        String filename = "contacts.txt";
 
         boolean running = true;
 
@@ -24,7 +26,7 @@ public class ContactsApp extends Contacts{
             returnMenuDisplay();
 
             int response = promptUserForChoice();
-            running = executeUserChoice(response);
+            running = executeUserChoice(response, directory, filename);
 
         }
 
