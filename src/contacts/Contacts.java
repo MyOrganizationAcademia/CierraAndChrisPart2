@@ -20,7 +20,7 @@ public class Contacts {
                 "\n" +
                 "1 - View all contacts\n" +
                 "2 - Add a new contact\n" +
-                "3 - Search a contact by her name\n" +
+                "3 - Search a contact by name\n" +
                 "4 - Delete an existing contact\n" +
                 "5 - Exit\n";
 
@@ -34,10 +34,21 @@ public class Contacts {
         return response;
     }
 
+    private static void viewAllContacts(Path dataFile) throws IOException {
+        System.out.println("Name | Phone number");
+        System.out.println("--------------");
+        List<String> usersContactList = Files.readAllLines(dataFile);
+        for (String line : usersContactList) {
+            System.out.println(line);
+        }
+    }
+
     private static void addNewContact(Path dataFile) throws IOException {
         List<String> contact = new ArrayList<>();
         Input addName = new Input();
         Input addNumber = new Input();
+        System.out.println("Name | Phone number");
+        System.out.println("--------------");
         contact.add(addName.getString() + " | " + addNumber.getString()); // Used getString method from input.java
         Files.write(dataFile, contact, StandardOpenOption.APPEND);
     }
@@ -55,7 +66,7 @@ public class Contacts {
         }
     }
 
-    public static void removeContact(Path dataFile) throws IOException {
+    private static void removeContact(Path dataFile) throws IOException {
         Input input = new Input();
         List<String> usersContactList = Files.readAllLines(dataFile);
         String contactToView = input.getString().toLowerCase(); // toLowerCase fixes case sensitivity
@@ -79,10 +90,7 @@ public class Contacts {
         switch(choice){
             case 1:
                 System.out.println("\n");
-                List<String> usersContactList = Files.readAllLines(dataFile);
-                for (String line : usersContactList) {
-                    System.out.println(line);
-                }
+                viewAllContacts(dataFile);
                 break;
             case 2:
                 System.out.println("\nEnter a new name and phone number: ");
