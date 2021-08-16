@@ -26,7 +26,7 @@ public class Input {
 
 
     public int getInt(int min, int max) {
-        System.out.println("Give me an integer between " + min + " and " + max + ": ");
+        System.out.println("Select an option between " + min + " and " + max + ": ");
         int userInt;
 
         try {

@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Contacts {
     String directory = "src/contacts";
@@ -33,10 +34,18 @@ public class Contacts {
         return response;
     }
 
+    private static void addNewContact(Path dataFile) throws IOException {
+        List<String> contact = new ArrayList<>();
+        Input addName = new Input();
+        Input addNumber = new Input();
+        contact.add(addName.getString() + " | " + addNumber.getString()); // Used getString method from input.java
+        Files.write(dataFile, contact, StandardOpenOption.APPEND);
+    }
+
     private static void viewByContactName(Path dataFile) throws IOException {
         Input input = new Input();
         List<String> usersContactList = Files.readAllLines(dataFile);
-        String contactToView = input.getString();
+        String contactToView = input.getString().toLowerCase(); // toLowerCase fixes case sensitivity
 
         for (String contact : usersContactList) {
             boolean ans = contact.contains(contactToView);
@@ -44,13 +53,12 @@ public class Contacts {
                 System.out.println(contact);
             }
         }
-
     }
 
 
     public static boolean executeUserChoice(int choice, String directory, String filename) throws IOException {
         boolean continueRunningApp = true;
-        List<String> contact = new ArrayList<>();
+
         Path dataFile = Paths.get(directory, filename);
 
 
@@ -64,23 +72,19 @@ public class Contacts {
                 break;
             case 2:
                 System.out.println("\nEnter a new name and phone number: ");
-                Input addName = new Input();
-                Input addNumber = new Input();
-                contact.add(addName.getString() + " | " + addNumber.getString()); // Used getString method from input.java
-                Files.write(dataFile, contact, StandardOpenOption.APPEND);
+                addNewContact(dataFile);
                 break;
             case 3:
                 System.out.println("\nEnter a name you want to search: ");
                 viewByContactName(dataFile);
-//                contact.contains(searchName.getString() + " | " + searchName.getString());
                 break;
-//            case 4:
-//                System.out.println("\n");
-//                viewMusiciansByGenre("rock");
-//                System.out.println("\n");
-//                break;
+            case 4:
+                System.out.println("\n");
+                viewMusiciansByGenre("rock");
+                System.out.println("\n");
+                break;
             case 5:
-                System.out.println("Good bye");
+                System.out.println("Okay, good-bye.");
                 continueRunningApp = false;
                 break;
 
