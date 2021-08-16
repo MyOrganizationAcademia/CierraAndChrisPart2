@@ -55,6 +55,20 @@ public class Contacts {
         }
     }
 
+    public static void removeContact(Path dataFile) throws IOException {
+        Input input = new Input();
+        List<String> usersContactList = Files.readAllLines(dataFile);
+        String contactToView = input.getString().toLowerCase(); // toLowerCase fixes case sensitivity
+
+        for (String contact : usersContactList) {
+            boolean ans = contact.contains(contactToView);
+            if(ans){
+                usersContactList.remove(contact);
+                Files.write(dataFile, usersContactList);
+            }
+        }
+    }
+
 
     public static boolean executeUserChoice(int choice, String directory, String filename) throws IOException {
         boolean continueRunningApp = true;
@@ -79,9 +93,8 @@ public class Contacts {
                 viewByContactName(dataFile);
                 break;
             case 4:
-                System.out.println("\n");
-                viewMusiciansByGenre("rock");
-                System.out.println("\n");
+                System.out.println("\nEnter a name you want to remove: ");
+                removeContact(dataFile);
                 break;
             case 5:
                 System.out.println("Okay, good-bye.");
