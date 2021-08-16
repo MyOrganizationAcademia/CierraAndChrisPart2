@@ -31,6 +31,17 @@ public class Contacts {
         return response;
     }
 
+    private static void viewByContactName(Input name){
+        Input searchName = new Input();
+        boolean ans = contact.contains(searchName);
+        if(ans){
+            System.out.println("List contains");
+        } else {
+            System.out.println("no");
+        }
+
+    }
+
 
     public static boolean executeUserChoice(int choice) throws IOException {
         boolean continueRunningApp = true;
@@ -55,17 +66,18 @@ public class Contacts {
                 contact.add(addName.getString() + " | " + addNumber.getString()); // Used getString method from input.java
                 Files.write(dataFile, contact, StandardOpenOption.APPEND);
                 break;
-//            case 3:
-//                System.out.println("\n");
-//                viewMusiciansByGenre("blues");
-//                System.out.println("\n");
-//                break;
+            case 3:
+                System.out.println("\nEnter a name you want to search: ");
+                Input searchName = new Input();
+                viewByContactName(searchName);
+//                contact.contains(searchName.getString() + " | " + searchName.getString());
+                break;
 //            case 4:
 //                System.out.println("\n");
 //                viewMusiciansByGenre("rock");
 //                System.out.println("\n");
 //                break;
-            case 3:
+            case 5:
                 System.out.println("Good bye");
                 continueRunningApp = false;
                 break;
