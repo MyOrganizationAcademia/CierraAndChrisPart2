@@ -39,7 +39,7 @@ public class Contacts {
         System.out.println("--------------");
         List<String> usersContactList = Files.readAllLines(dataFile);
         for (String line : usersContactList) {
-            System.out.println(line);
+            System.out.println(line.replaceFirst("(\\d{3})(\\d{3})(\\d+)", "$1-$2-$3"));
         }
     }
 
